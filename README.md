@@ -1,15 +1,16 @@
-# ADF Business Financial Performance & Cash Flow Analysis
-> *Analyzed business income, expenses, and transaction records to identify major cost drivers, investigate financial-data discrepancies, and build a Power BI reporting solution for better financial visibility and decision-making.*
+# Credit Card Complaints Analytics & AI-Assisted Service Improvement
+> *Analyzed 86,893 credit card complaint records to investigate complaint patterns, company response performance, and opportunities to improve customer service through data-driven decisions and AI-assisted workflow automation.*
 ---
 ## ⚙️ Project Type Flags
 > 
 - [x] Exploratory Data Analysis (EDA)
-- [ ] SQL Analysis / Querying
+- [x] SQL Analysis / Querying
 - [x] Dashboard / Data Visualization
 - [x] Data Pipeline / ETL
 - [ ] Predictive Modelling / Machine Learning
 - [x] Data Cleaning / Wrangling
 - [x] End-to-End (multiple of the above)
+- [x] Other: Business Process Analysis & AI Automation Design
 ---
 ## Table of Contents
 1. [Project Overview](#1-project-overview)
@@ -28,44 +29,23 @@
 
 ---
 ## 1. Project Overview
-**Context:** ADF maintains financial records documenting customer payments, business expenses, materials purchases, labour, utilities, and other operational transactions. The supplied workbook contains transaction summaries alongside itemized expense records, but the information requires structured analysis to provide a clearer view of business cash movements and spending patterns.
+**Context:**  Financial institutions receive customer complaints about billing disputes, interest rates, fraud, fees, account closures, and other credit card issues. Understanding these complaints can help organizations identify recurring service problems and improve how they respond to customers.
 
-**Problem Statement:** How can ADF organize its financial records, identify its largest expense categories, monitor income and expenditure over time, and detect inconsistencies that could affect financial reporting and business decisions?
+**Problem Statement:** How can complaint data be used to identify major sources of customer dissatisfaction, evaluate response timeliness, compare company performance fairly, and identify opportunities to streamline complaint handling?
 
-**Approach:** The project uses Microsoft Power BI and Power Query to prepare the financial data, examine data-quality issues, structure the transaction and expense-detail tables, and develop an interactive dashboard. Measures will be created to track recorded income, expenses, net cash movement, expense composition, and financial trends.
+**Approach:** This project will profile and clean a credit card complaints dataset, use SQL to investigate complaint patterns and response outcomes, and build a Power BI dashboard to communicate the findings. It will also map a proposed AI-assisted complaint-handling workflow, including classification, routing, validation, and human oversight.
 
-**Outcome:** The intended deliverable is an interactive Power BI reporting solution that provides visibility into recorded financial activity, highlights expense drivers, and identifies transactions requiring further verification. Final dashboard findings and recommendations will be documented after the calculations and source records have been validated.
+**Outcome:** The planned deliverables are a reproducible analytical workflow, documented SQL queries, a Power BI dashboard, evidence-based business recommendations, and an AI automation prototype or documented workflow design. Final findings and any automation performance claims will be added after validation and testing.
 
-### Initial Dataset Profile
-
-| Measure | Initial value |
-|---|---:|
-| Transaction records | 24 |
-| Expense-detail records | 87 |
-| Recorded income | 817,000 |
-| Recorded expenses | 712,050 |
-| Net cash movement | 104,950 |
-| Transactions flagged for review | 4 |
-| Earliest transaction date | 7 October 2023 |
-| Latest transaction date | 10 March 2026 |
-
-*These are preliminary figures calculated from the supplied workbook.*
-
----
-
----
 ## 2. Objectives
 
-- **Primary Objective:** Build an interactive Power BI dashboard that consolidates ADF's recorded income and expenses into a clear view of financial activity and net cash movement.
+- **Primary Objective:** Identify the complaint categories and response-performance patterns that offer the clearest opportunities for customer-service improvement.
 
-- **Secondary Objective 1:** Identify the largest expense categories and quantify their contributions to total recorded expenditure.
+- **Secondary Objective 1:** Clean and validate the dataset, document data-quality issues, and prepare a reliable analytical dataset.
 
-- **Secondary Objective 2:** Analyze income, expenses, and net cash movement across the available transaction dates to identify periods of higher or lower financial activity.
+- **Secondary Objective 2:** Measure complaint volume, response timeliness, response outcomes, and differences across companies, complaint categories, submission channels, and time periods.
 
-- **Secondary Objective 3:** Identify discrepancies, ambiguous entries, and incomplete transaction information that require verification before financial conclusions are drawn.
-
-- **Secondary Objective 4:** Develop actionable recommendations for improving expense monitoring, transaction documentation, and financial reporting.
-
+- **Secondary Objective 3:** Design and evaluate an AI-assisted workflow that could classify incoming complaints and recommend routing to the appropriate service team.
 ---
 ## 3. Project Scope & Tools
 
@@ -73,57 +53,61 @@
 
 | Dimension | Details |
 |---|---|
-| **In Scope** | Recorded income, business expenses, expense categories, transaction dates, descriptions, balances, and data-quality review notes |
-| **Out of Scope** | Verified accounting profit, tax calculations, inventory valuation, receivables ageing, and audited financial statements, because the necessary supporting information is not established in the supplied workbook |
-| **Time Period** | 7 October 2023 – 10 March 2026 |
+| **In Scope** | Credit card complaint records, complaint categories, company responses, submission channels, dates, states, and available timeliness indicators |
+| **Out of Scope** |Actual bank internal processes, individual customer investigations, private customer identification, and unsupported conclusions about the causes of complaints|
+| **Time Period** | December 1, 2015 – April 10, 2021 |
 | **Granularity** | Transaction-level summaries and itemized expense records |
-| **Business Focus** | Financial monitoring, expense analysis, cash-flow visibility, and data-quality control |
+| **Business Focus** |Customer service performance, complaint trends, data quality, process improvement, and AI-assisted workflow design|
 
 ### Tools & Technologies
 
-| Category | Tool(s) Used |
-|---|---|
-| Data Storage | Microsoft Excel workbook |
-| Data Processing | Power Query |
-| Analysis | Power BI measures and exploratory analysis |
-| Visualization | Microsoft Power BI |
+| Category | Tool(s) Used |  Used |
+|---|---|---|
+| Data Storage | Excel/XLSX, CSV; SQL database if needed|Excel/XLSX, CSV; SQL database if needed|
+| Data Processing | Excel, Power Query|
+| Analysis | SQL |
+| Visualization | Power BI, DAX|
 | Version Control | Git and GitHub |
 | Documentation | Markdown |
+|AI Automation| LLM-based classification workflow, subject to implementation |
 | Other | Data modelling and financial metric validation |
 
-*This table describes the intended implementation. Update it to reflect the tools actually used when the project is complete.*
-
+*These are the planned tools. The final table will list only technologies actually used.*
 ---
 
 ## 4. Repository Structure
 
 ```text
-ADF-Financial-Performance-Analysis/
+credit-card-complaints-analytics/
 │
 ├── data/
 │   ├── raw/
-│   │   └── ADF_SALES_REPORT.xlsx
-│   ├── processed/
-│   │   └── README.md
-│   └── external/
-│
-├── powerbi/
-│   └── ADF_Financial_Analysis.pbix
+│   └── processed/
 │
 ├── queries/
-│   └── README.md
+│   ├── exploratory/
+│   ├── transformations/
+│   └── final/
 │
-├── reports/
+├── power-query/
 │
-├── visuals/
-│   ├── executive_overview.png
-│   ├── expense_analysis.png
-│   └── cashflow_trends.png
+├── power-bi/
+│   ├── dashboard/
+│   └── measures/
+│
+├── automation/
+│   ├── workflow-design/
+│   ├── prompts/
+│   └── evaluation/
 │
 ├── docs/
-│   ├── data_dictionary.md
-│   ├── data_quality_log.md
-│   └── methodology.md
+│   ├── data-dictionary.md
+│   ├── data-quality-report.md
+│   └── process-map.md
+│
+├── visuals/
+│
+├── reports/
 │
 └── README.md
 ```
@@ -132,250 +116,138 @@ ADF-Financial-Performance-Analysis/
 ## 5. Data Workflow
 
 ```text
-Source Workbook
-      |
-      v
-Power Query Ingestion
-      |
-      v
-Data Profiling & Quality Checks
-      |
-      v
-Cleaning & Transformation
-      |
-      v
-Data Modelling
-      |
-      v
-DAX Measures & Validation
-      |
-      v
+Data Workflow
+
+Source Excel Workbook
+        ↓
+Data Profiling & Validation
+        ↓
+Cleaning and Transformation
+        ↓
+SQL Analysis and Metric Calculation
+        ↓
 Power BI Dashboard
-      |
-      v
-Business Insights & Recommendations
+        ↓
+Business Recommendations
+        ↓
+AI-Assisted Workflow Prototype
+        ↓
+Testing, Documentation & Publication
 ```
 ### 1. Source
-
-The source is `ADF SALES REPORT.xlsx`, containing three worksheets:
-
-- `Transactions` — 24 transaction summaries and supporting notes.
-- `Expense Detail` — 87 itemized expense records.
-- `Category` — a reference list of expense categories.
+An Excel workbook containing 86,893 credit card complaint records and 25 columns.
 
 ### 2. Ingestion
-
-Import the three worksheets into Power BI through **Home → Get Data → Excel Workbook → Transform Data**.
-
+Inspect the workbook, confirm the schema, check data types, and import the source into the chosen analysis environment.
 Assign clear query names and inspect the columns, data types, and relationships before loading the data model.
 
 ### 3. Cleaning
-
-The cleaning process will include:
-
-- Confirming that transaction IDs are valid and identifying duplicate records.
-- Standardizing date, text, and numeric data types.
-- Checking for missing values and inconsistent category names.
-- Investigating transactions flagged through `NeedsReview`.
-- Checking whether recorded net movement equals income minus expense.
-- Comparing transaction-level expense totals with the itemized expense detail.
-- Investigating ambiguous transfers, negative entries, and potentially incomplete descriptions.
-- Preserving original values and documenting corrections rather than silently changing financial records.
+Investigate missing values, date consistency, category naming, duplicate records, and the validity of response-time measurements. Document every material change.
 
 ### 4. Transformation
-
-Planned transformations include:
-
-- Creating a proper date dimension for time-based analysis.
-- Structuring transaction summaries and expense details into a relational model.
-- Standardizing expense categories.
-- Creating calculated measures for income, expenses, net cash movement, and category contribution.
-- Establishing a documented approach to transaction reconciliation.
+Create validated reporting fields, such as complaint month and year, response-duration measures where appropriate, and standardized category labels.
 
 ### 5. Analysis
-
-The analysis will cover:
-
-- Income and expense trends over time.
-- Expense composition by category.
-- Monthly and annual financial activity where sufficient observations exist.
-- Net cash movement by transaction and period.
-- Transactions requiring review.
-- Reconciliation between summary records and itemized expenses.
+Use SQL to investigate complaint volume, response timeliness, response outcomes, company differences, complaint categories, and submission channels.
 
 ### 6. Output
-
-The intended deliverables are a Power BI report, validated financial measures, a data-quality log, documented business findings, and actionable recommendations.
-
+Produce a Power BI dashboard, reusable SQL queries, a data-quality report, business recommendations, and a documented AI-assisted workflow.
 ---
+
 ## 6. Data Model & Schema
-The workbook contains two transaction-related tables and one category lookup table.
+### Dataset: credit_card_complaints
 
-### Dataset / Table: `Transactions`
-
+The source workbook contains a flat table with 25 columns. The initial schema includes the following fields:
 **Row count:** 24
 
-| Field Name | Data Type | Description | Example |
-|---|---|---|---|
-| TransactionID | Whole number | Identifier for a transaction summary | 1 |
-| Date | Date | Recorded transaction date | 2023-10-07 |
-| Year | Whole number | Calendar year | 2023 |
-| Month | Whole number | Calendar month number | 10 |
-| Source | Text | Source or record group | ADF Sales |
-| Description | Text | Summary of the transaction | Daily overhead |
-| PreviousBalance | Decimal | Previously recorded balance, where available | 32,500 |
-| Income | Whole number | Recorded income for the transaction | 68,500 |
-| Expense | Whole number | Recorded expenditure for the transaction | 40,500 |
-| Net | Whole number | Recorded income minus expense | 28,000 |
-| Balance | Whole number | Recorded balance field | 28,000 |
-| NeedsReview | Boolean | Indicates whether the transaction requires review | FALSE |
-| ReviewNote | Text | Explanation of an identified issue | Amount requires confirmation |
-| Notes | Text | Additional transaction details | Expense breakdown |
+| Field Name | Data Type | Description |
+|---|---|---|
+| Complaint ID | Integer-like identifier | Identifier associated with a complaint |
+| Company | Text |Financial company named in the record |
+| Complaint Category | Text | Complaint category; the source column name contains trailing whitespace |
+| Issue | Text | Issue classification recorded in the dataset |
+| Date received | Date | Date the complaint was received |
+|Date sent to company2 | Text | Date the complaint was sent to the company|
+|Company response to consumer|Text| Recorded company response outcome |
+| Timely response? |Text|Source-provided response-timeliness label|
+|Submitted via|Text|Channel used to submit the complaint|
+|Consumer disputed?|Text|Source-provided indicator of whether the consumer disputed the response|
+|State|Text|State associated with the complaint|
+|Consumer complaint narrative |Text|Consumer's written description, where available|
+| Avg No of days  |Numeric| Explanation of an identified issue | Source-provided duration field; definition and validity require verification|
 
-### Dataset / Table: `Expense Detail`
+The workbook also contains fields such as Product, Dimension, Sub-issue, Sub-product, Tags, ZIP code, and Company public response.
 
-**Row count:** 87
+Approximate row count: 86,893.
 
-| Field Name | Data Type | Description | Example |
-|---|---|---|---|
-| TransactionID | Whole number | Links the expense record to a transaction | 1 |
-| Date | Date | Date associated with the expense | 2023-10-07 |
-| Year | Whole number | Calendar year | 2023 |
-| Month | Whole number | Calendar month number | 10 |
-| Source | Text | Source or record group | ADF Sales |
-| Transaction | Text | Transaction description or grouping | Daily overhead |
-| ExpenseItem | Text | Individual expense item | Salaries |
-| Category | Text | Expense classification | Salaries |
-| Amount | Whole number | Recorded expense amount | 13,000 |
+Date range: December 1, 2015 – April 10, 2021.
 
-### Dataset / Table: `Category`
+Key identifier: Complaint ID, subject to uniqueness validation.
 
-**Row count:** 16
+Relationships: The initial analysis will use a single complaint table. Additional dimension tables will only be created if they improve the analytical model.
 
-| Field Name | Data Type | Description | Example |
-|---|---|---|---|
-| Category | Text | Expense category reference | Gas / Fuel |
-
-### Proposed Data Model
-
-A practical starting point is a transaction-summary table linked to its expense-detail records by `TransactionID`.
-
-```mermaid
-erDiagram
-    TRANSACTIONS ||--o{ EXPENSE_DETAIL : "has expense items"
-    CATEGORY ||--o{ EXPENSE_DETAIL : "classifies"
-    DIM_DATE ||--o{ TRANSACTIONS : "filters by date"
-    DIM_DATE ||--o{ EXPENSE_DETAIL : "filters by date"
-
-    TRANSACTIONS {
-        int TransactionID PK
-        date Date
-        int Income
-        int Expense
-        int Net
-        int Balance
-        boolean NeedsReview
-    }
-
-    EXPENSE_DETAIL {
-        int TransactionID FK
-        date Date
-        string ExpenseItem
-        string Category
-        int Amount
-    }
-
-    CATEGORY {
-        string Category
-    }
-
-    DIM_DATE {
-        date Date PK
-        int Year
-        int Month
-    }
-```
-
-**Important modelling considerations:**
-
-- `Transactions[TransactionID]` should be unique before it is used as the one-side of a relationship.
-- `Expense Detail[TransactionID]` may repeat because one transaction can contain several expense items.
-- The category lookup should have unique category values before being related to the expense-detail table.
-- A shared date dimension can filter both transaction summaries and expense details.
-- Avoid directly summing transaction-level expenses and itemized expenses together: they represent different levels of detail and could double-count expenditure.
-- The model must be validated against the actual Power BI relationships before the diagram is considered final.
-
----
+The data dictionary will be expanded to cover all source columns, their types, definitions, missing-value patterns, and cleaning decisions.
 
 ## 7. Analysis & Metrics
 
 ### Analytical Approach
 
-This is an exploratory financial-analysis project focused on descriptive analysis, expense segmentation, cash-flow monitoring, and data-quality investigation.
+The analysis will combine data profiling, descriptive analysis, comparisons across business dimensions, and time-based trend analysis.
 
-The analysis begins by establishing reliable definitions for the financial measures. It then examines patterns across transaction dates and expense categories, while investigating whether inconsistencies in the source records could affect the interpretation of results.
-
-The project does not assume that recorded net cash movement is equivalent to accounting profit. Customer deposits, payments to third parties, transfers, personal expenses, and incomplete transaction information may require different accounting treatment.
+SQL will be used to make the calculations reproducible. Power BI will present the validated results in an interactive format. The analysis will distinguish between observed associations and proven causes.
 
 ### Key Metrics Defined
 
 | Metric | Plain-Language Definition | Why It Matters |
 |---|---|---|
-| Total Recorded Income | Sum of the income amounts recorded in the transaction table | Establishes the volume of recorded incoming funds |
-| Total Recorded Expenses | Sum of the expense amounts recorded in the transaction table | Measures recorded expenditure |
-| Net Cash Movement | Total recorded income minus total recorded expenses | Shows the net movement implied by the recorded transactions |
-| Expense Category Share | Expense amount for a category divided by total recorded expenses | Identifies the largest spending categories |
-| Average Transaction Income | Total recorded income divided by the number of transactions with income | Provides a basic measure of income per income-generating transaction |
-| Expense-to-Income Ratio | Recorded expenses divided by recorded income | Shows expenditure relative to recorded incoming funds |
-| Transactions Requiring Review | Count of transactions flagged for further verification | Helps prioritize data-quality investigation |
-| Monthly Income | Total recorded income grouped by calendar month | Tracks the timing of incoming funds |
-| Monthly Expenses | Total recorded expenses grouped by calendar month | Tracks changes in spending over time |
-
-*All metrics must be implemented and validated in Power BI before they are reported as final dashboard outputs.*
+| Total Complaints | Count of valid, unique complaint records | Establishes the volume of recorded incoming funds |
+|Timely Response Rate|Complaints labelled as receiving a timely response divided by complaints with a valid timeliness label|Measures recorded compliance with response-timeliness expectations|
+|Untimely Response Count|Number of complaints labelled as receiving an untimely response|Identifies cases that may require service-process investigation|
+|Response Outcome Distribution|Count and percentage of complaints by recorded company response outcome|Shows how recorded complaint outcomes are distributed|
+|Complaint Category Share|Complaints in a category divided by all valid complaints| Identifies categories contributing the largest complaint volumes|
+|Average Response Duration|Average validated elapsed time between appropriate date fields|Helps investigate processing delays, subject to date and duration validation|
+|Complaint Trend|Complaint counts grouped by month or year|Identifies changes in recorded complaint volume over time|
+|Company Complaint Share|A company's complaint count divided by the total in the selected comparison population|Supports comparisons of complaint volume while accounting for differences in the comparison period|
 
 ### Methods Used
 
-- Descriptive analysis of financial totals.
-- Time-series analysis across the available dates.
-- Expense-category segmentation.
-- Reconciliation of transaction summaries with expense-detail records.
-- Data-quality profiling and anomaly investigation.
-- Comparative analysis of income, expenses, and net cash movement.
-- Interactive filtering by date, category, and source.
+- Data profiling and missing-value analysis.
+- Duplicate and identifier validation.
+- SQL aggregation, filtering, grouping, joins where justified, and window functions where useful.
+- Trend analysis by month and year.
+- Segmentation by company, issue, response outcome, state, and submission channel.
+- Validation of response-duration fields against available dates.
+- Power BI measures, interactive filters, and comparative visualizations.
+- Process mapping and evaluation of a proposed AI-assisted workflow.
 
 ---
 
 ## 8. Key Insights
+To be completed after the analytical queries and dashboard have been validated.
 
-The following are preliminary observations from the supplied workbook. They should be treated as initial findings rather than final business conclusions.
+**Insight 1: Complaint concentration**
+Identify the categories contributing the largest share of complaints and determine which issues deserve further operational investigation.
 
-**Insight 1: Recorded income exceeds recorded expenditure in aggregate**
+**Insight 2: Response timeliness**
+Quantify timely and untimely responses, investigate how they vary across relevant groups, and validate whether the source labels support the intended interpretation.
 
-The workbook contains 817,000 in recorded income and 712,050 in recorded expenses, producing a net cash movement of 104,950. This establishes a positive aggregate difference in the recorded figures, but it does not prove that the business generated 104,950 in accounting profit.
+**Insight 3: Company-level differences**
+Compare complaint volumes and response patterns across companies, accounting for the available time period and limitations in the dataset.
 
-**Insight 2: Materials are the largest recorded expense category**
+**Insight 4: Trends over time**
+Determine whether recorded complaint volumes and response outcomes changed across the period covered by the data.
 
-The itemized expense records attribute 227,350 to Materials, making it the largest category by recorded amount. This suggests that monitoring materials purchases may be important for understanding spending patterns. The underlying entries should still be reconciled with transaction summaries.
-
-**Insight 3: Gas and fuel represent another substantial expense category**
-
-Gas / Fuel totals 134,300 in the expense-detail table. This makes fuel and generator-related spending another useful area to investigate for expense monitoring and operational planning.
-
-**Insight 4: Some transactions require additional verification**
-
-Four transaction summaries are flagged for review. Their notes include uncertainty around a customer receipt, unpriced materials, and ambiguous transfer or payment entries. These issues could affect the reliability of the recorded totals and should be resolved before making firm financial decisions.
-
-**Insight 5: The available records are unevenly distributed over time**
-
-The workbook contains records from October 2023, July–December 2025, and March 2026, with substantial gaps between these periods. Month-to-month and year-over-year comparisons may therefore be incomplete or misleading.
+**Insight 5: Data-quality implications**
+Document how missing narratives, absent subcategories, incomplete fields, and questionable duration values affect the conclusions that can be drawn.
+Each final insight will include a verified figure, the relevant comparison, its business implication, and any important qualification.
 
 ---
 
 ## 9. Recommendations
 
-| Priority | Recommendation | Based On | Suggested Owner |
+| Priority | Recommendation | Evidence Required | Suggested Owner |
 |---|---|---|---|
-| High | Resolve the four flagged transactions by verifying receipts, material costs, and ambiguous payment directions against source records. | Insight 4 | Business owner / Finance |
+| High | Investigate the complaint categories with the highest verified volumes | Insight 4 | Business owner / Finance |
 | High | Reconcile transaction summaries with itemized expense records and document any differences before publishing final totals. | Insights 1 and 4 | Finance / Data Analyst |
 | High | Establish a consistent recordkeeping template that captures transaction date, transaction ID, income, expense, category, payment direction, and supporting notes. | Insights 4 and 5 | Business owner / Operations |
 | Medium | Monitor materials spending by category and transaction to identify recurring high-cost purchases and opportunities for better purchasing control. | Insight 2 | Procurement / Operations |
