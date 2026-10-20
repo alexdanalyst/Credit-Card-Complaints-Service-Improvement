@@ -247,48 +247,44 @@ Each final insight will include a verified figure, the relevant comparison, its 
 
 | Priority | Recommendation | Evidence Required | Suggested Owner |
 |---|---|---|---|
-| High | Investigate the complaint categories with the highest verified volumes | Insight 4 | Business owner / Finance |
-| High | Reconcile transaction summaries with itemized expense records and document any differences before publishing final totals. | Insights 1 and 4 | Finance / Data Analyst |
-| High | Establish a consistent recordkeeping template that captures transaction date, transaction ID, income, expense, category, payment direction, and supporting notes. | Insights 4 and 5 | Business owner / Operations |
-| Medium | Monitor materials spending by category and transaction to identify recurring high-cost purchases and opportunities for better purchasing control. | Insight 2 | Procurement / Operations |
-| Medium | Track gas and fuel expenses separately and review recurring consumption-related spending. | Insight 3 | Operations |
-| Medium | Use a monthly financial dashboard to monitor income, expenditure, and net cash movement consistently as new records become available. | Insights 1 and 5 | Business owner / Finance |
-| Low | Expand the dataset with customer-level payment status, order costs, outstanding balances, and transaction classifications where appropriate. | Insights 4 and 5 | Business owner / Data Analyst |
+| High | Investigate the complaint categories with the highest verified volumes | Category-level complaint analysis |Customer Service / Operations|
+| High |Review the handling of complaints labelled as untimely|Validated timeliness analysis and case-level review|Service Operations / Compliance|
+| Medium |Standardize complaint data collection and required fields |Data-quality assessment|Data Governance / Operations|
+| Medium | Pilot AI-assisted complaint categorization and routing|Workflow test results and classification evaluation|Customer Service / Automation Team|
+| Low | Establish recurring complaint-performance reporting|Validated dashboard and agreed KPI definitions|Business Intelligence / Operations|
 
+Recommendations will be prioritized according to the magnitude of the verified issue, feasibility, business risk, and expected benefit.
 ---
 
 ## 10. Assumptions & Limitations
 
 ### Assumptions
 
-- The `Income`, `Expense`, and `Net` fields represent the values recorded in the source workbook; their underlying accounting treatment has not been independently verified.
-- The `TransactionID` field is intended to identify a transaction summary and is expected to link to related expense-detail records.
-- The expense categories are intended to classify itemized spending, but category definitions may require standardization.
+- Each valid complaint record represents one complaint for counting purposes.
+- Source-provided response labels are used as recorded until their definitions and reliability have been assessed.
+- Missing values are not automatically interpreted as negative responses or as evidence of a particular customer outcome.
 - Transaction dates represent the dates associated with the recorded financial activity.
-- Net cash movement is interpreted as recorded income minus recorded expenses, not as verified accounting profit.
+- Comparisons between companies are descriptive unless appropriate exposure or business-volume data is available.
 
 ### Limitations
-
-- The dataset is small, with 24 transaction summaries and 87 expense-detail records.
-- The date range is discontinuous, so trend comparisons may not represent complete monthly or annual business performance.
-- The currency is not explicitly identified in the supplied workbook.
-- Four transactions have unresolved review flags.
-- Some notes identify unpriced materials or ambiguous payment/transfer entries.
-- The available fields do not establish a complete inventory, cost-of-goods-sold, tax, accounts-receivable, or audited accounting model.
-- Customer-level and product-level profitability cannot be established reliably from the current summary structure alone.
-- The recorded net movement may be affected by deposits, transfers, repayments, personal expenses, and other transactions that require appropriate classification.
-- The analysis cannot independently verify whether all business transactions have been recorded.
+-The dataset covers a historical period ending April 10, 2021; it cannot establish current complaint patterns.
+- Complaint counts alone do not measure the overall quality of a company because customer numbers and transaction volumes are not provided.
+- Complaint narratives are missing for many records, limiting text analysis.
+- Some source fields are entirely empty or substantially incomplete and may not support useful analysis.
+- The source-provided duration field requires validation. Its observed values include negative values and extreme outliers, so it should not be used without investigation.
+- Associations between complaint categories, companies, and outcomes do not establish causation.
+- An AI workflow designed from this dataset cannot be assumed to improve service performance without testing against an appropriate evaluation set.
 
 ---
 
 ## 11. Future Enhancements
 
-- [ ] Expand the transaction history to cover all available months and reconcile the records against source documents.
-- [ ] Add transaction classifications to distinguish customer receipts, deposits, supplier payments, transfers, reimbursements, and personal expenses.
-- [ ] Develop a standardized expense-category hierarchy and data-entry validation rules.
-- [ ] Add order-level revenue and direct-cost data to support more reliable product profitability analysis.
-- [ ] Introduce a reconciliation report that flags differences between summary expenses and itemized expense details.
-- [ ] Automate the refresh process when new financial records are added to a structured source file.
+- [ ] Connect a recurring complaint export to an automated data-cleaning and reporting pipeline.
+- [ ] Test AI-assisted complaint classification against manually reviewed labels.
+- [ ] Add human approval, confidence thresholds, and exception handling to the proposed routing workflow.
+- [ ] Evaluate processing time, classification errors, and routing accuracy before making automation-benefit claims.
+- [ ] Incorporate additional business-volume data to support fairer comparisons of complaint rates.
+- [ ] Refresh the analysis with more recent data if an appropriate source becomes available.
 
 ---
 
@@ -296,20 +292,22 @@ Each final insight will include a verified figure, the relevant comparison, its 
 
 | Deliverable | Description | Location |
 |---|---|---|
-| Power BI Report | Interactive financial overview and expense-analysis dashboard | `powerbi/ADF_Financial_Analysis.pbix` |
-| Project README | Business problem, methodology, findings, and recommendations | `README.md` |
-| Data Dictionary | Field definitions and table descriptions | `docs/data_dictionary.md` |
-| Data Quality Log | Identified discrepancies, review decisions, and reconciliation notes | `docs/data_quality_log.md` |
-| Dashboard Screenshots | Exported report pages for portfolio presentation | `visuals/` |
-| Methodology Notes | Documented transformation and metric definitions | `docs/methodology.md` |
+|Data Quality Report | Missing values, duplicates, anomalies, and cleaning decisions |docs/data-quality-report.md|
+| Data Dictionary| Field definitions, data types, and source notes|docs/data-dictionary.md|
+| Data Dictionary | Field definitions and table descriptions |`docs/data_dictionary.md` |
+|SQL Analysis|Reproducible queries for profiling and business analysis|queries/|
+|Power BI Dashboard|Interactive complaint and response-performance reporting|power-bi/|
+|Business Findings Report|Verified insights and prioritized recommendations| reports/ |
+|Process Map|Proposed complaint-handling workflow and improvement opportunities|docs/process-map.md|
+|AI Workflow Prototype|Implemented and tested prototype, if completed|automation/|
+|Project Documentation|Methods, limitations, and instructions for reproducing the work|README.md|
+
 ---
 
 ## 13. Author
 
 **ALEX ESIVBEKPE**
 **Business Data & AI Automation Analyst**
-
-Interested in transforming complex or disorganized information into structured, reliable analysis that helps businesses identify inefficiencies, understand performance, and make better-informed decisions.
 
 - 🔗 LinkedIn: www.linkedin.com/in/alex-esivbekpe
 - 💼 GitHub: https://github.com/alexdanalyst/alexdanalyst
