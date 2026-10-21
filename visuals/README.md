@@ -1,3 +1,4 @@
 # Visuals
-<img width="765" height="434" alt="ADF Sales dashboard" src="https://github.com/user-attachments/assets/>
+<img width="751" height="435" alt="Credit-Card-Complaints-Analytics dashboard" src="https://github.com/user-attachments/assets/da40d073-7cae-4bb7-b03e-277570eb20bd" />
+>
 
